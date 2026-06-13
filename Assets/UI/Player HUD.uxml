@@ -1,0 +1,22 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/CSS/HUD%20CSS.uss?fileID=7433441132597879392&amp;guid=d73a029b27703d64085145f44ce77a5d&amp;type=3#HUD CSS"/>
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement name="resourceBar" style="flex-grow: 1; background-color: rgba(125, 125, 125, 0.361); height: 10%; width: 100%; position: absolute; justify-content: flex-start; align-items: center; align-self: auto; flex-direction: row;">
+            <ui:VisualElement name="ResourceWood" style="flex-grow: 1; flex-direction: row; justify-content: flex-start; align-items: center; width: 10%;">
+                <ui:Image name="resourceImage"/>
+                <ui:Label text="Wood:" name="resourceName" class="resourceName"/>
+                <ui:Label text="Label" name="ResourceWoodAmount" class="resourceAmount"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="ResourceOre" style="flex-grow: 1; flex-direction: row; justify-content: flex-start; align-items: center; width: 10%;">
+                <ui:Image name="resourceImage"/>
+                <ui:Label text="Ore:&#10;" name="resourceName" class="resourceName"/>
+                <ui:Label text="Label" name="ResourceOreAmount" class="resourceAmount"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="ResourceEssence" style="flex-grow: 1; flex-direction: row; justify-content: flex-start; align-items: center; width: 10%;">
+                <ui:Image name="resourceImage"/>
+                <ui:Label text="Essence:" name="resourceName" class="resourceName"/>
+                <ui:Label text="Label" name="ResourceEssenceAmount" class="resourceAmount"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

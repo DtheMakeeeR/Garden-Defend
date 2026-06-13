@@ -1,0 +1,14 @@
+:root {
+}
+
+.resourceName {
+    font-size: 30px;
+    -unity-font-definition: resource("FlatSkin/Font/Roboto-Bold");
+    -unity-font-style: normal;
+}
+
+.resourceAmount {
+    font-size: 30px;
+    -unity-font-style: normal;
+    -unity-font-definition: resource("FlatSkin/Font/Roboto-Bold");
+}
