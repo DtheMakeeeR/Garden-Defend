@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using Unity.Cinemachine;
 using UnityEngine;
 
 namespace GardenDefense
@@ -13,6 +11,9 @@ namespace GardenDefense
         int _height;
 
         BuildingGridCell[,] _grid;
+
+        private Vector3 GridOrigin => transform.position;
+
         private void Start()
         {
             _grid = new BuildingGridCell[_width, _height];
@@ -30,15 +31,24 @@ namespace GardenDefense
             foreach (var p in allBuildingPositions)
             {
                 (int x, int y) = WorldToGridPosition(p);
-                _grid[x, y].SetBuilding(building);
+                if (IsValidGridPosition(x, y))
+                {
+                    _grid[x, y].SetBuilding(building);
+                }
             }
         }
 
         private (int x, int y) WorldToGridPosition(Vector3 worldPosition)
         {
-            int x = Mathf.FloorToInt(worldPosition.x / BuildingSystem.CellSize);
-            int y = Mathf.FloorToInt(worldPosition.z / BuildingSystem.CellSize);
+            Vector3 localPos = worldPosition - GridOrigin;
+            int x = Mathf.FloorToInt(localPos.x / BuildingSystem.CellSize);
+            int y = Mathf.FloorToInt(localPos.z / BuildingSystem.CellSize);
             return (x, y);
+        }
+
+        private bool IsValidGridPosition(int x, int y)
+        {
+            return x >= 0 && x < _width && y >= 0 && y < _height;
         }
 
         public bool CanBuild(List<Vector3> allBuildingPositions)
@@ -46,7 +56,7 @@ namespace GardenDefense
             foreach (var p in allBuildingPositions)
             {
                 (int x, int y) = WorldToGridPosition(p);
-                if (x < 0 || x >= _width || y < 0 || y >= _height || !_grid[x, y].IsEmpty)
+                if (!IsValidGridPosition(x, y) || !_grid[x, y].IsEmpty)
                 {
                     return false;
                 }
@@ -56,23 +66,39 @@ namespace GardenDefense
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
-            if (BuildingSystem.CellSize <= 0 || _width <= 0 || _height <= 0)
+            if (BuildingSystem.CellSize <= 0.01f || _width <= 0 || _height <= 0)
                 return;
-            Vector3 origin = transform.position;
-            for (int y = 0; y < _height; y++)
+
+            Gizmos.color = Color.yellow;
+
+            Vector3 origin = GridOrigin;
+            float cellSize = BuildingSystem.CellSize;
+
+            for (int x = 0; x <= _width; x++)
             {
-                Vector3 start = origin + new Vector3(0, 0.01f, y * BuildingSystem.CellSize);
-                Vector3 end = origin + new Vector3(_width * BuildingSystem.CellSize, 0.01f, y * BuildingSystem.CellSize);
+                Vector3 start = origin + new Vector3(x * cellSize, 0.01f, 0);
+                Vector3 end = origin + new Vector3(x * cellSize, 0.01f, _height * cellSize);
                 Gizmos.DrawLine(start, end);
             }
+
+            for (int z = 0; z <= _height; z++)
+            {
+                Vector3 start = origin + new Vector3(0, 0.01f, z * cellSize);
+                Vector3 end = origin + new Vector3(_width * cellSize, 0.01f, z * cellSize);
+                Gizmos.DrawLine(start, end);
+            }
+
+            Gizmos.color = Color.green;
             for (int x = 0; x < _width; x++)
             {
-                Vector3 start = origin + new Vector3(x * BuildingSystem.CellSize, 0.01f, 0);
-                Vector3 end = origin + new Vector3(x * BuildingSystem.CellSize, 0.01f, _height * BuildingSystem.CellSize);
-                Gizmos.DrawLine(start, end);
+                for (int z = 0; z < _height; z++)
+                {
+                    Vector3 cellCenter = origin + new Vector3(x * cellSize + cellSize / 2f, 0.02f, z * cellSize + cellSize / 2f);
+                    Gizmos.DrawSphere(cellCenter, 0.1f);
+                }
             }
         }
+
         public class BuildingGridCell
         {
             Building _building;
