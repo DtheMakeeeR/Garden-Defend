@@ -2,18 +2,14 @@ using UnityEngine;
 
 namespace GardenDefense
 {
-    public class BuildingData : MonoBehaviour
+    [CreateAssetMenu(menuName = "Data/Building Data")]
+    public class BuildingData : ScriptableObject
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        [field: SerializeField]
+        public BuildingModel Model { get; private set; }
+        [field: SerializeField]
+        public string Description { get; private set; }
+        [field: SerializeField]
+        public int Cost { get; private set; }
     }
 }

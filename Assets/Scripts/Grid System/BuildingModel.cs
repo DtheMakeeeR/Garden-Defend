@@ -15,7 +15,7 @@ namespace GardenDefense
         {
             _shapeUnits = GetComponentsInChildren<BuildingShapeUnit>();
         }
-        public void Rotate(float rotationStep)
+        public void Rotate(float rotationStep = 90)
         {
             _wrapper.Rotate(new Vector3(0, rotationStep, 0));
         }
