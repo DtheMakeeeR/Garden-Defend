@@ -80,7 +80,7 @@ namespace GardenDefense
                     break;
                 case "Ore":
                     if (oreAmountLabel != null)
-                        oreAmountLabel.text = ItemsManager.Instance.GetItemCount("Stone").ToString();
+                        oreAmountLabel.text = ItemsManager.Instance.GetItemCount("Ore").ToString();
                     break;
                 case "Essence":
                     if (essenceAmountLabel != null)
