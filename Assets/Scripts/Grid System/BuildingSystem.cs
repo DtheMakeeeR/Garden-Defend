@@ -24,6 +24,7 @@ namespace GardenDefense
         BuildingPreview _preview;
         private bool _isBuildingMode = false;
         private int _selectedBuildingIndex = -1;
+        private string _indexName;
 
         private void Start()
         {
@@ -58,11 +59,11 @@ namespace GardenDefense
             {
                 _preview.transform.position = mousePos;
                 List<Vector3> buildPositions = _preview.BuildingModel.GetAllBuildingPositions();
-                bool canBuild = _grid.CanBuild(buildPositions);
+                bool canBuild = _grid.CanBuild(buildPositions) && ItemsManager.Instance.HasItem(_indexName, _preview.Data.Cost);
 
+                _preview.transform.position = GetSnappedCenterrPosition(buildPositions);
                 if (canBuild)
                 {
-                    _preview.transform.position = GetSnappedCenterrPosition(buildPositions);
                     _preview.ChangeState(BuildingPreview.BuildingPreviewState.POSITIVE);
                 }
                 else
@@ -85,7 +86,7 @@ namespace GardenDefense
             if (_preview == null) return;
 
             List<Vector3> buildPositions = _preview.BuildingModel.GetAllBuildingPositions();
-            bool canBuild = _grid.CanBuild(buildPositions);
+            bool canBuild = _grid.CanBuild(buildPositions) && ItemsManager.Instance.HasItem(_indexName, _preview.Data.Cost);
 
             if (canBuild)
             {
@@ -98,11 +99,21 @@ namespace GardenDefense
             if (Keyboard.current == null) return;
 
             if (Keyboard.current.digit1Key.wasPressedThisFrame && _buildingDataList.Count > 0)
+            {
                 SelectBuilding(0);
+                _indexName = "Wood";
+            }
+                
             else if (Keyboard.current.digit2Key.wasPressedThisFrame && _buildingDataList.Count > 1)
+            {
                 SelectBuilding(1);
+                _indexName = "Essence";
+            }
             else if (Keyboard.current.digit3Key.wasPressedThisFrame && _buildingDataList.Count > 2)
+            {
                 SelectBuilding(2);
+                _indexName = "Ore";
+            }
             else if (Keyboard.current.rKey.wasPressedThisFrame && _preview != null)
                 _preview.Rotate(90);
         }
@@ -135,6 +146,7 @@ namespace GardenDefense
 
         private void PlaceBuilding(List<Vector3> buildPositions)
         {
+            ItemsManager.Instance.RemoveItem(_indexName, _preview.Data.Cost);
             Building building = Instantiate(_buildingPrefab, _preview.transform.position, Quaternion.identity);
             building.Setup(_preview.Data, _preview.BuildingModel.Rotation);
             _grid.SetBuilding(building, buildPositions);
