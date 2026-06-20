@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1850705231507404398}
   - component: {fileID: 3858141666474702242}
   m_Layer: 0
-  m_Name: BuildingModel3
+  m_Name: Cave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

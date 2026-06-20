@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1850705231507404398}
   - component: {fileID: 4626943788182927891}
   m_Layer: 0
-  m_Name: BuildingModel2
+  m_Name: Crystall Pit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
