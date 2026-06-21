@@ -62,7 +62,7 @@ MonoBehaviour:
   _recourseName: Wood
   _generateTime: 1
   _generateAmount: 1
-  _isGenerating: 1
+  _isGenerating: 0
 --- !u!1 &6385040382334419803
 GameObject:
   m_ObjectHideFlags: 0

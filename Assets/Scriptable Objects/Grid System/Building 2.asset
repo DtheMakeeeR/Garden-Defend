@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Building 2
   m_EditorClassIdentifier: Assembly-CSharp::GardenDefense.BuildingData
   <Model>k__BackingField: {fileID: 1850705231507404398, guid: 12801521255a43f4abb79cd4a14a4f28, type: 3}
-  <Description>k__BackingField: Medium Building
-  <Cost>k__BackingField: 10
+  <Description>k__BackingField: Produces Essence
+  <Cost>k__BackingField: 5

@@ -3,7 +3,7 @@ using UnityEngine;
 using MEC;
 namespace GardenDefense
 {
-    public class BasicGenerator : MonoBehaviour
+    public class BasicGenerator : MonoBehaviour, IStation
     {
         [SerializeField]
         string _recourseName;
@@ -13,7 +13,7 @@ namespace GardenDefense
         int _generateAmount;
 
         [SerializeField]
-        bool _isGenerating = true;
+        bool _isGenerating = false;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -34,8 +34,17 @@ namespace GardenDefense
             while (true)
             {
                 yield return Timing.WaitForSeconds(_generateTime);
-                ItemsManager.Instance.AddItem(_recourseName, _generateAmount);
+                if (_isGenerating)
+                {
+                    Debug.Log("ADD");
+                    ItemsManager.Instance.AddItem(_recourseName, _generateAmount);
+                }
             }            
+        }
+
+        public void Activate()
+        {
+            _isGenerating = true;
         }
     }
 }

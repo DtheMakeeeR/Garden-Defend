@@ -92,9 +92,9 @@ namespace GardenDefense
                 return false;
                 
             _items[itemName] -= quantity;
-            
+
             if (_items[itemName] <= 0)
-                _items.Remove(itemName);
+                _items[itemName] = 0;
 
             HUDManager.Instance.UpdateResource(itemName); // Обновляем HUD
             SyncItemList();

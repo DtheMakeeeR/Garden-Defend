@@ -12,6 +12,8 @@ namespace GardenDefense
         {
             _data = data;
             _model = Instantiate(_data.Model, transform.position, Quaternion.identity, transform);
+            IStation station = _model.GetComponentInChildren<IStation>();
+            station?.Activate();
             _model.Rotate(rotation);
         }
     }

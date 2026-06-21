@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e47eea8dae317246a1141411b9fb0d9, type: 3}
-  m_Name: Building 1
+  m_Name: Building 4
   m_EditorClassIdentifier: Assembly-CSharp::GardenDefense.BuildingData
-  <Model>k__BackingField: {fileID: 1850705231507404398, guid: d2eec47f67daa6646b6a0ad77a37c475, type: 3}
-  <Description>k__BackingField: Produces Wood
+  <Model>k__BackingField: {fileID: 1850705231507404398, guid: 3f3d03e2f74a1b9419621efff4daa01f, type: 3}
+  <Description>k__BackingField: Main Building
   <Cost>k__BackingField: 5

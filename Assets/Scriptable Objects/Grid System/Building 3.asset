@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Building 3
   m_EditorClassIdentifier: Assembly-CSharp::GardenDefense.BuildingData
   <Model>k__BackingField: {fileID: 1850705231507404398, guid: 022c32d493ace284490b17a3e143c040, type: 3}
-  <Description>k__BackingField: Large Building
-  <Cost>k__BackingField: 15
+  <Description>k__BackingField: Produces Ore
+  <Cost>k__BackingField: 5
