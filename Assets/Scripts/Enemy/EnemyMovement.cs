@@ -25,6 +25,11 @@ namespace GardenDefense
                 }
             }
             _agent.speed = Speed;
+            GoToTarget();
+        }
+
+        private void GoToTarget()
+        {
             if (Target != null)
             {
                 _agent.SetDestination(Target.position);
@@ -33,7 +38,7 @@ namespace GardenDefense
 
         private void Update()
         {
-            
+            GoToTarget();
         }
 
     }
