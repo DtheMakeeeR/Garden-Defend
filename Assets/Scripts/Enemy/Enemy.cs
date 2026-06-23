@@ -3,27 +3,9 @@ using UnityEngine;
 
 namespace GardenDefense
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : Entity
     {
         [SerializeField]
-        public int Health;
-        [SerializeField]
         public int Damage;
-        
-        public void TakeDamage(int damage)
-        {
-            Health -= damage;
-            if (Health <= 0)
-            {
-                Die();
-            }
-        }
-
-        private void Die()
-        {
-            Destroy(gameObject);
-        }
-
-
     }
 }
