@@ -47,6 +47,7 @@ namespace GardenDefense {
                 Debug.Log($"Is Grounded: {_controller.isGrounded}, Is Jumping: {isJumping}");
                 _isJumping = isJumping;
             };
+
             _input.EnablePlayerActions();
         }
 
@@ -65,11 +66,9 @@ namespace GardenDefense {
 
             if (_controller.isGrounded)
             {
-                Debug.Log($" UPDATE: Is Grounded: {_controller.isGrounded}, Is Jumping: {_isJumping}");
                 _currentForceVelocity.y -= GroundedGravityStrength;
                 if(_isJumping)
                 {
-                    Debug.Log($" UPDATE: GONNA JUMP");
                     _currentForceVelocity.y = JumpStrength;
                 }
             }

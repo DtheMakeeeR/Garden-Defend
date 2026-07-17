@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using static GardenDefense.InputSystem_Actions;
+using static InputSystem_Actions;
 
 namespace GardenDefense
 {
@@ -16,6 +16,7 @@ namespace GardenDefense
         public UnityAction<Vector2> Move = delegate { };
         public UnityAction<bool> Jump = delegate { };
         public UnityAction<bool> Attack = delegate { };
+        public UnityAction Reload = delegate { };
         public UnityAction<bool> Sprint = delegate { };
         public UnityAction Lock = delegate { };
         public UnityAction<bool> Dodge = delegate { };
@@ -110,6 +111,19 @@ namespace GardenDefense
                     break;
             }
         }
-        
+
+        public void OnReload(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                case InputActionPhase.Performed:
+                    Reload?.Invoke();
+                    break;
+                default:
+                    Reload?.Invoke();
+                    break;
+            }
+        }
     }
 }
