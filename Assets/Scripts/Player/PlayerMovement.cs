@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace GardenDefense { 
     public class PlayerMovement : MonoBehaviour
@@ -48,7 +49,23 @@ namespace GardenDefense {
                 _isJumping = isJumping;
             };
 
+            _input.Interact += isInteracting =>
+            {
+                if (!isInteracting) return;
+                if (Cursor.lockState == CursorLockMode.Locked)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            };
             _input.EnablePlayerActions();
+
+
+
+
         }
 
         // Update is called once per frame

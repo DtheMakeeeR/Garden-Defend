@@ -17,6 +17,7 @@ namespace GardenDefense
         public UnityAction<bool> Jump = delegate { };
         public UnityAction<bool> Attack = delegate { };
         public UnityAction Reload = delegate { };
+        public UnityAction<bool> Interact = delegate { };
         public UnityAction<bool> Sprint = delegate { };
         public UnityAction Lock = delegate { };
         public UnityAction<bool> Dodge = delegate { };
@@ -66,7 +67,16 @@ namespace GardenDefense
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            //noop
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                case InputActionPhase.Performed:
+                    Interact?.Invoke(true);
+                    break;
+                default:
+                    Interact?.Invoke(false);
+                    break;
+            }
         }
 
         public void OnJump(InputAction.CallbackContext context)
