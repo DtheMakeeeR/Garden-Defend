@@ -18,6 +18,8 @@ namespace GardenDefense
         protected float reloadTime;
         [SerializeField]
         protected bool isReloading;
+
+        [Header("Ammo")]
         [SerializeField]
         protected int magSize;
         [SerializeField]
@@ -26,17 +28,43 @@ namespace GardenDefense
         protected int maxAmmo;
         [SerializeField]
         protected int storedAmmo;
+        public int CurrentAmmo
 
+        {
+            get => currentAmmo;
+            set
+            {
+                currentAmmo = Mathf.Clamp(value, 0, magSize);
+                Callback?.Invoke();
+            }
+        }
+        public int StoredAmmo
+        {
+            get => storedAmmo;
+            set
+            {
+                storedAmmo = Mathf.Clamp(value, 0, maxAmmo);
+                Callback?.Invoke();
+            }
+        }
 
+        public delegate void AmmoCallback();
+
+        public event AmmoCallback Callback;
+        private void Awake()
+        {
+            Debug.Log($"*** {currentAmmo}/{storedAmmo} fields");
+        }
         public IEnumerator<float> _ReloadCoroutine()
         {
             yield return Timing.WaitForSeconds(reloadTime);
-            int ammoNeeded = magSize - currentAmmo;
-            int ammoToReload = Mathf.Min(ammoNeeded, storedAmmo);
-            currentAmmo += ammoToReload;
-            RemoveAmmo(ammoToReload);
+            int ammoNeeded = magSize - CurrentAmmo;
+            int ammoToReload = Mathf.Min(ammoNeeded, StoredAmmo);
+            CurrentAmmo += ammoToReload;
+            StoredAmmo -= ammoToReload;
 
             isReloading = false;
+            Debug.Log($"{gameObject.name} is reloaded. Ammo in mag: {CurrentAmmo}");
         }
 
         public IEnumerator<float> _FireRateCoroutine()
@@ -46,34 +74,26 @@ namespace GardenDefense
             canShoot = true;
         }
 
-        public abstract void Shoot();
+        protected abstract void Shoot();
         public void Reload()
         {
-            if(currentAmmo < magSize && storedAmmo > 0 && !isReloading)
+            if(CurrentAmmo < magSize && StoredAmmo > 0 && !isReloading)
             {
                 isReloading = true;
+                Debug.Log($"{gameObject.name} is reloading. Ammo in mag: {CurrentAmmo}");
                 Timing.RunCoroutine(_ReloadCoroutine().CancelWith(gameObject));
             }
-        }
-        public void AddAmmo(int amount)
-        {
-            storedAmmo = Mathf.Min(storedAmmo + amount, maxAmmo);
-        }
-
-        public void RemoveAmmo(int amount)
-        {
-            storedAmmo -= amount;
         }
 
         public void TryShoot()
         {
-            if(currentAmmo > 0 && !isReloading && canShoot)
+            if(CurrentAmmo > 0 && !isReloading && canShoot)
             {
                 Timing.RunCoroutine(_FireRateCoroutine().CancelWith(gameObject));
                 Shoot();
-                currentAmmo--;
+                CurrentAmmo--;
             }
-            else if (currentAmmo <= 0 && storedAmmo > 0 && !isReloading)
+            else if (CurrentAmmo <= 0 && StoredAmmo > 0 && !isReloading)
             {
                 Reload();
             }
