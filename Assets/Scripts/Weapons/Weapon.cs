@@ -6,6 +6,7 @@ namespace GardenDefense
 {
     public abstract class Weapon : MonoBehaviour
     {
+        [Header("Basic Settings")]
         [SerializeField]
         protected float range;
         [SerializeField]
@@ -13,11 +14,12 @@ namespace GardenDefense
         [SerializeField]
         protected float fireRate;
         [SerializeField]
-        protected bool canShoot = true;
-        [SerializeField]
         protected float reloadTime;
+        //[SerializeField]
+        [Header("Flags")]
         [SerializeField]
-        protected bool isReloading;
+        protected bool canShoot = true;
+        public bool IsReloading { get; private set; }
 
         [Header("Ammo")]
         [SerializeField]
@@ -28,6 +30,18 @@ namespace GardenDefense
         protected int maxAmmo;
         [SerializeField]
         protected int storedAmmo;
+
+        [Header("Sounds")]
+        [SerializeField]
+        protected AudioSource _audioSource;
+        [SerializeField]
+        protected AudioClip _shotSound;
+        [SerializeField]
+        protected float _minPitch;
+        [SerializeField]
+        protected float _maxPitch;
+        [SerializeField]
+        protected AudioClip _reloadSound;
         public int CurrentAmmo
 
         {
@@ -63,7 +77,7 @@ namespace GardenDefense
             CurrentAmmo += ammoToReload;
             StoredAmmo -= ammoToReload;
 
-            isReloading = false;
+            IsReloading = false;
             Debug.Log($"{gameObject.name} is reloaded. Ammo in mag: {CurrentAmmo}");
         }
 
@@ -77,9 +91,10 @@ namespace GardenDefense
         protected abstract void Shoot();
         public void Reload()
         {
-            if(CurrentAmmo < magSize && StoredAmmo > 0 && !isReloading)
+            if(CurrentAmmo < magSize && StoredAmmo > 0 && !IsReloading)
             {
-                isReloading = true;
+                PlayReloadSound();
+                IsReloading = true;
                 Debug.Log($"{gameObject.name} is reloading. Ammo in mag: {CurrentAmmo}");
                 Timing.RunCoroutine(_ReloadCoroutine().CancelWith(gameObject));
             }
@@ -87,16 +102,29 @@ namespace GardenDefense
 
         public void TryShoot()
         {
-            if(CurrentAmmo > 0 && !isReloading && canShoot)
+            if(CurrentAmmo > 0 && !IsReloading && canShoot)
             {
                 Timing.RunCoroutine(_FireRateCoroutine().CancelWith(gameObject));
+                PlayShotSound();
                 Shoot();
                 CurrentAmmo--;
             }
-            else if (CurrentAmmo <= 0 && StoredAmmo > 0 && !isReloading)
+            else if (CurrentAmmo <= 0 && StoredAmmo > 0 && !IsReloading)
             {
                 Reload();
             }
+        }
+
+        private void PlayReloadSound()
+        {
+            _audioSource.pitch = 1f;
+            _audioSource.PlayOneShot(_reloadSound);
+        }
+
+        private void PlayShotSound()
+        {
+            _audioSource.pitch = Random.Range(_minPitch, _maxPitch);
+            _audioSource.PlayOneShot(_shotSound);
         }
     }
 }

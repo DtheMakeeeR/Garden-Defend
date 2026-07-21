@@ -16,9 +16,11 @@ namespace GardenDefense
         public UnityAction<Vector2> Move = delegate { };
         public UnityAction<bool> Jump = delegate { };
         public UnityAction<bool> Attack = delegate { };
-        public UnityAction Reload = delegate { };
+        public UnityAction<bool> Reload = delegate { };
         public UnityAction<bool> Interact = delegate { };
         public UnityAction<bool> Sprint = delegate { };
+        public UnityAction<bool> NextItem = delegate { };
+        public UnityAction<bool> PreviousItem = delegate { };
         public UnityAction Lock = delegate { };
         public UnityAction<bool> Dodge = delegate { };
 
@@ -128,10 +130,36 @@ namespace GardenDefense
             {
                 case InputActionPhase.Started:
                 case InputActionPhase.Performed:
-                    Reload?.Invoke();
+                    Reload?.Invoke(true);
                     break;
                 default:
-                    Reload?.Invoke();
+                    Reload?.Invoke(false);
+                    break;
+            }
+        }
+
+        public void OnNextItem(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                    NextItem?.Invoke(true);
+                    break;
+                default:
+                    NextItem?.Invoke(false);
+                    break;
+            }
+        }
+
+        public void OnPreviousItem(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                    PreviousItem?.Invoke(true);
+                    break;
+                default:
+                    PreviousItem?.Invoke(false);
                     break;
             }
         }

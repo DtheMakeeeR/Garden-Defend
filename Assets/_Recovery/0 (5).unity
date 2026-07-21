@@ -840,7 +840,6 @@ GameObject:
   - component: {fileID: 538960412}
   - component: {fileID: 538960418}
   - component: {fileID: 538960419}
-  - component: {fileID: 538960420}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -1017,106 +1016,9 @@ MonoBehaviour:
   _activeWeapon: {fileID: 1699633807}
   _previousWeapon: {fileID: 0}
   _weapons:
-  - {fileID: 1699633807}
+  - {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
   - {fileID: 2136957001}
   _ammoText: {fileID: 469269087}
---- !u!82 &538960420
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538960411}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.388
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &771665358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,17 +2284,13 @@ MonoBehaviour:
   range: 100
   damage: 1
   fireRate: 0.1
-  reloadTime: 1.5
   canShoot: 1
+  reloadTime: 1
+  isReloading: 0
   magSize: 30
   currentAmmo: 30
   maxAmmo: 120
   storedAmmo: 120
-  _audioSource: {fileID: 538960420}
-  _shotSound: {fileID: 8300000, guid: 11c7ed1b459a456418eb1d4b6f0e71de, type: 3}
-  _minPitch: 1
-  _maxPitch: 1.2
-  _reloadSound: {fileID: 8300000, guid: f1d0312efcdbe0147b66efeb2e5cd2cb, type: 3}
   _knockbackForce: 0.5
   _accuracySpread: 1.5
   shootableLayers:
@@ -2500,36 +2398,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 1232168574}
     m_Modifications:
     - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
-      propertyPath: _maxPitch
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
-      propertyPath: _minPitch
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
-      propertyPath: _shotSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 11c7ed1b459a456418eb1d4b6f0e71de, type: 3}
-    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
       propertyPath: currentAmmo
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
-      propertyPath: isReloading
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
-      propertyPath: _audioSource
-      value: 
-      objectReference: {fileID: 538960420}
-    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
-      propertyPath: _reloadSound
-      value: 
-      objectReference: {fileID: 8300000, guid: f1d0312efcdbe0147b66efeb2e5cd2cb, type: 3}
-    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
-      propertyPath: _accuracySpread
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8218223523704867300, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
       propertyPath: m_LocalPosition.x

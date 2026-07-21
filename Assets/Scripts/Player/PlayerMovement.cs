@@ -45,7 +45,6 @@ namespace GardenDefense {
             _input.Sprint += isSprinting => _isSprinting = isSprinting;
             _input.Jump += isJumping =>
             {
-                Debug.Log($"Is Grounded: {_controller.isGrounded}, Is Jumping: {isJumping}");
                 _isJumping = isJumping;
             };
 
