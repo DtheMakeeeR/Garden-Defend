@@ -16,6 +16,9 @@ namespace GardenDefense
             Health -= damage;
             if (Health <= 0)
             {
+                Debug.Log($"{gameObject.name} has died.");
+                if (OnDeath != null) Debug.Log($"{gameObject.name} has OnDeath event.");
+                else Debug.Log($"{gameObject.name} hasnt OnDeath event.");
                 OnDeath?.Invoke();
                 Die();
             }

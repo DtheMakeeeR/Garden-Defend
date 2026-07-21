@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590cc28874a48fd47bf092089c2e801c, type: 3}
+  m_Name: secondWave
+  m_EditorClassIdentifier: Assembly-CSharp::GardenDefense.WaveObject
+  WaveName: Second Wave
+  Description: 'Thougher wave '
+  Enemies:
+  - EnemyPrefab: {fileID: 674845273130948101, guid: a2c846634c3727c4ca1350a9946e2ea5, type: 3}
+    Amount: 15
+  SpawnInterval: 1

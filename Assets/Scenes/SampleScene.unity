@@ -1755,11 +1755,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e514b8d831f567e4b8fba30537645fd9, type: 3}
   m_PrefabInstance: {fileID: 1640973996}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1640973998 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e514b8d831f567e4b8fba30537645fd9, type: 3}
-  m_PrefabInstance: {fileID: 1640973996}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1640973999
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1987,11 +1982,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7b5c25180ee5a4e9e4adacd72dad27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GardenDefense.Spawner
-  _enemyPrefab: {fileID: 674845273130948101, guid: a2c846634c3727c4ca1350a9946e2ea5, type: 3}
-  _spawnInterval: 1
-  _spawnCount: 500
-  _spawnRadius: 10
-  _target: {fileID: 1640973998}
+  Waves:
+  - {fileID: 11400000, guid: 4d3af62f3946d3949be68bf170403f91, type: 2}
+  - {fileID: 11400000, guid: b041b21c574e8e143895ce4f72752b11, type: 2}
+  - {fileID: 11400000, guid: 9cd3f838540f81a4dbe1f4ae620969d3, type: 2}
+  _intervalBetweenWaves: 5
+  _spawnRadius: 5
+  _target: {fileID: 538960417}
 --- !u!1 &1828064371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,7 +2390,7 @@ MonoBehaviour:
   _minPitch: 1
   _maxPitch: 1.2
   _reloadSound: {fileID: 8300000, guid: f1d0312efcdbe0147b66efeb2e5cd2cb, type: 3}
-  _knockbackForce: 0.5
+  _knockbackForce: 50
   _accuracySpread: 1.5
   shootableLayers:
     serializedVersion: 2
@@ -2530,6 +2527,10 @@ PrefabInstance:
     - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
       propertyPath: _accuracySpread
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617352089047956097, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
+      propertyPath: _knockbackForce
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8218223523704867300, guid: a4666d7acc5bbb846b7d5d5293773cd5, type: 3}
       propertyPath: m_LocalPosition.x

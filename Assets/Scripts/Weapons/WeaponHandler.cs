@@ -24,7 +24,6 @@ namespace GardenDefense
         private bool CanSwap => !_activeWeapon.IsReloading;
         private void Start()
         {
-            Debug.Log($"{_activeWeapon.gameObject.name} is a weapon");
             ; _input.Attack += (isAttacking) =>
             {
                 _attackPressed = isAttacking;
@@ -32,7 +31,6 @@ namespace GardenDefense
             _input.Reload += isReloading =>
             {
                 _reloadPressed = isReloading;
-                Debug.Log("R PRESSED");
             };
             _input.NextItem += isScrolling =>
             {
@@ -49,20 +47,17 @@ namespace GardenDefense
                 weapon.Callback += UpdateAmmoText;
             }
             UpdateAmmoText();
-            Debug.Log($"{_activeWeapon.gameObject.name} is an active weapon");
         }
 
         private void DecreaseIndex()
         {
             _weaponIndex = (_weaponIndex - 1 + _weapons.Count) % _weapons.Count;
-            Debug.Log($"{_weaponIndex} new index from DecreaseIndex");
             ChangeWeapon();
         }
 
         private void IncreaseIndex()
         {
             _weaponIndex = (_weaponIndex + 1) % _weapons.Count;
-            Debug.Log($"{_weaponIndex} new index from IncreaseIndex");
             ChangeWeapon();
         }
 

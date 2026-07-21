@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 52289268383226967}
   - component: {fileID: 4361889231175730029}
   m_Layer: 6
-  m_Name: SphereEnemy
+  m_Name: SphereFastEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.48, y: 1, z: 7.11}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71b8fe994c804e54a9b9576ac895601e, type: 2}
+  - {fileID: 2100000, guid: 9fec4895034fa4d4cbadd2815119b532, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GardenDefense.EnemyMovement
   _agent: {fileID: 2066303569929510526}
-  Speed: 3.5
+  Speed: 5
   Target: {fileID: 0}
 --- !u!54 &52289268383226967
 Rigidbody:
